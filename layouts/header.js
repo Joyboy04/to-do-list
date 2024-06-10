@@ -83,23 +83,23 @@ const Header = ({ user, firebase, onLogout }) => {
             </Button>
           ) : (
             <div>
-              <IconButton
-                aria-label="account of current user"
-                aria-controls="menu-appbar"
-                className={classes.iconButton}
-                aria-haspopup="true"
-                onClick={handleMenu}
-                color="inherit"
-              >
-                {user.photoURL ? (
-                  <>
-                    <p className={classes.displayName}>{user.displayName}</p>
-                    <Avatar alt="user avatar" src={user.photoURL} />
-                  </>
-                ) : (
-                  <Avatar>U</Avatar>
-                )}
-              </IconButton>
+            <IconButton
+              aria-label="account of current user"
+              aria-controls="menu-appbar"
+              className={classes.iconButton}
+              aria-haspopup="true"
+              onClick={handleMenu}
+              color="inherit"
+            >
+              {user.photoURL ? (
+                <>
+                  <p className={classes.displayName}>{user.displayName}</p>
+                  <Avatar alt="user avatar" src={user.photoURL} />
+                </>
+              ) : (
+                <Avatar>U</Avatar>
+              )}
+            </IconButton>
               <Menu
                 id="menu-appbar"
                 anchorEl={anchorEl}

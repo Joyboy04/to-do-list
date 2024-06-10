@@ -1,11 +1,11 @@
-/* eslint-disable react/jsx-wrap-multilines */
-import { useState } from 'react';
+import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
 import Checkbox from '@material-ui/core/Checkbox';
-import { CircularProgress } from '@material-ui/core';
+import CircularProgress from '@material-ui/core/CircularProgress';
 import IconButton from '@material-ui/core/IconButton';
 import DeleteIcon from '@material-ui/icons/Delete';
 import AssignmentInd from '@material-ui/icons/AssignmentInd';
@@ -15,10 +15,9 @@ import Card from '@material-ui/core/Card';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import Tooltip from '@material-ui/core/Tooltip';
 import { filter } from 'lodash';
-import PropTypes from 'prop-types';
-import { useInputValue } from '../../hooks/useInputValue';
-import AssignDialog from './assign-dialog';
 import { useStyles } from './styles';
+import AssignDialog from './assign-dialog';
+import { useInputValue } from '../../hooks/useInputValue';
 
 const UserTasks = ({
   team = [],
@@ -42,9 +41,7 @@ const UserTasks = ({
   };
 
   const handleAddTodo = () => {
-    // Clear txt input
     newTodo.onChange('');
-    // Send to firebase
     onAdd(newTodo.value);
   };
 
@@ -91,7 +88,7 @@ const UserTasks = ({
       {items.map((todo) => {
         const labelId = `checkbox-list-label-${todo.id}`;
         return (
-          <ListItem key={todo.id} role={undefined} dense>
+          <ListItem key={todo.id} role="listitem" dense>
             {team && team.members && team.members.length > 1 && (
               <AssignDialog
                 user={user}
@@ -119,8 +116,8 @@ const UserTasks = ({
               className={[
                 classes.inputTodo,
                 classes.inputListTodo,
-                todo.completed && classes.listTextChecked,
-              ]}
+                todo.completed ? classes.listTextChecked : ''
+              ].join(' ')}
               onChange={(evt) => {
                 onEdit(todo.id, evt.target.value);
               }}
@@ -161,7 +158,6 @@ const UserTasks = ({
     );
   };
 
-  // Main renderer
   return (
     <Card className={classes.root}>
       {renderInputTodo()}

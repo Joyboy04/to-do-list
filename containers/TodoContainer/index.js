@@ -26,8 +26,6 @@ const TodoContainer = ({ items, onSetTodo, onAddTodo, firebase, team, user }) =>
     await firebase.deleteDocument({ collection: 'todos', id });
   };
 
-  // const filterTodo = (id) => first(filter(userTodos, (todo) => todo.id === id));
-
   const handleUpdateTodo = (todoObj) => {
     const todoRef = firebase.getRef({ collection: 'todos', doc: todoObj.id });
     if (todoRef) {
@@ -74,6 +72,7 @@ const TodoContainer = ({ items, onSetTodo, onAddTodo, firebase, team, user }) =>
     tmpTodos = tmpTodos.filter((item) => item.id !== id);
     onSetTodo(tmpTodos);
   };
+  
 
   return (
     <UserTasks
